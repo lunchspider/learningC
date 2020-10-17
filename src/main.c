@@ -1,13 +1,13 @@
-#include "String.h"
+#include"Stack.h"
+#include<stdio.h>
 int main() 
 {
-  string mystr = string_init("hello");
-  string sec = string_init(" world!");
-  string hello = string_init(50);
-  string_append(&mystr, &sec);
-  printf("%s\n",mystr.arr);
-  free_string(&mystr);
-  free_string(&sec);
-  free_string(&hello);
+  Stack* s = createStack();
+  int x = 5;
+  pushStack(s, &x);
+  int y;
+  popStack(s, &y);
+  printf("%d\n",y);
+  freeStack(s);
   return 0;
 } 

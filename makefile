@@ -1,8 +1,8 @@
-CC=gcc
-
+CC=cc
+OPTION=-g
 
 all : main.o String.o Stack.o
-	$(CC) bin/main.o bin/String.o bin/Stack.o -o main
+	$(CC) bin/main.o bin/String.o bin/Stack.o ${OPTION} -o main
 
 main.o: src/main.c src/String.h
 	$(CC) -I. -c src/main.c -o bin/main.o
