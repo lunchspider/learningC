@@ -49,7 +49,12 @@ size_t lenStack(Stack *s)
     ++lenOfStack;
     garbPtr = garbPtr->prev;
   }
-  return lenOfStack;
+  garbPtr = s->next;
+  while(garbPtr){
+    ++lenOfStack;
+    garbPtr = garbPtr->next;
+  }
+  return ++lenOfStack;
 }
 
 void freeStack
