@@ -43,15 +43,15 @@ void popStack
 
 size_t lenStack(Stack *s)
 {
-  size_t lenOfStack;
+  size_t lenOfStack = 0;
   Stack* garbPtr = s->prev;
   while(garbPtr){
-    ++lenOfStack;
+    lenOfStack++;
     garbPtr = garbPtr->prev;
   }
   garbPtr = s->next;
-  while(garbPtr){
-    ++lenOfStack;
+  while(garbPtr->data){
+    lenOfStack++;
     garbPtr = garbPtr->next;
   }
   return ++lenOfStack;
