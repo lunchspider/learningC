@@ -39,6 +39,7 @@ void popStack
   }
   memcpy(element, s->data, s->sizeofdata);
   free(s->data);
+  s->data = NULL;
 }
 
 size_t lenStack(Stack *s)
@@ -64,14 +65,14 @@ void freeStack
   Stack* garb2;
   while(garb){
     // freeing all the stack nodes previous to the given element
-    free(garb->data);
+    if (garb->data) free(garb->data);
     garb2 = garb->prev;
     free(garb);
     garb = garb2;
   }
-  garb = s->next;
+  garb = s;
   while(garb){
-    free(garb->data);
+    if (garb->data) free(garb->data);
     garb2 = garb->next;
     free(garb);
     garb = garb2;

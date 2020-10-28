@@ -3,11 +3,11 @@
 int main() 
 {
   Stack* s = createStack();
-  int x = 5;
-  pushStack(s, &x);
-  pushStack(s, &x);
-  pushStack(s, &x);
-  pushStack(s, &x);
+  size_t x;
+  for(size_t i = 0 ; i < 1000 ; ++i){
+    pushStack(s, &i);
+  }
+  popStack(s, &x);
   printf("size of stack is %zu\n", lenStack(s));
   freeStack(s);
   return 0;
