@@ -1,12 +1,28 @@
 #include "Stack.h"
 
-Stack* createStack()
+#undef createStack
+
+Stack* (createStack)()
 {
   Stack* s = (Stack*) malloc(sizeof(Stack));
   s->data = NULL;
   s->next = NULL;
   s->prev = NULL;
   return s;
+}
+
+Stack* createStackLen(size_t len)
+{
+  Stack* ReturnStack = createStack();
+  Stack* GarbStack = ReturnStack;
+  while(len){
+    Stack* GarbStack2 = createStack();
+    GarbStack2->prev = GarbStack;
+    GarbStack->next   = GarbStack2;
+    GarbStack  = GarbStack2;
+    --len;
+  }
+  return ReturnStack;
 }
 
 void (pushStack)
@@ -65,7 +81,11 @@ void freeStack
   Stack* garb2;
   while(garb){
     // freeing all the stack nodes previous to the given element
-    if (garb->data) free(garb->data);
+    if (garb->data) {
+      // since in poping a element the data is set to NULL
+      // if data is not null we will free  it
+      free(garb->data);
+    }
     garb2 = garb->prev;
     free(garb);
     garb = garb2;
