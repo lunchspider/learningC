@@ -1,7 +1,4 @@
 #include "Stack.h"
-
-#undef createStack
-
 Stack* (createStack)()
 {
   Stack* s = (Stack*) malloc(sizeof(Stack));
@@ -11,7 +8,8 @@ Stack* (createStack)()
   return s;
 }
 
-Stack* createStackLen(size_t len)
+Stack* createStackLen
+(size_t len)
 {
   Stack* ReturnStack = createStack();
   Stack* GarbStack = ReturnStack;

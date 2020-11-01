@@ -6,11 +6,6 @@
 #include<stdlib.h>
 #include<string.h>
 
-
-#define createStack() createStackLen(0)
-
-#define createStack(X) createStackLen(X)
-
 #define pushStack(X,Y) pushStack(X, Y, sizeof(Y))
 
 typedef struct Stack Stack;
@@ -26,9 +21,11 @@ Stack* (createStack)();
 
 Stack* createStackLen(size_t len);
 
-void (pushStack)(Stack * ,const void *,const size_t);
+void (pushStack)
+(Stack *s, const void *data,const size_t size);
 
-void popStack(Stack *, void *);
+void popStack
+(Stack *, void *);
 
 size_t lenStack(Stack *);
 
