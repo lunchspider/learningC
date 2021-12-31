@@ -1,7 +1,7 @@
 #include "Stack.h"
 Stack* (createStack)()
 {
-  Stack* s = (Stack*) malloc(sizeof(Stack));
+  Stack* s =  malloc(sizeof(Stack));
   s->data = NULL;
   s->next = NULL;
   s->prev = NULL;
@@ -31,7 +31,7 @@ void (pushStack)
     // where data is null
     s = s->next;
   }
-  s->data = (void*) malloc(size);
+  s->data = malloc(size);
   s->sizeofdata = size;
   // copying data into the last node
   memcpy(s->data, data, size);

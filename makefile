@@ -1,18 +1,33 @@
-CC=cc
-OPTION=-g
+CC = gcc
+SRCDIR = src
+OBJDIR = bin
+TARGET = main # output binary
+# do not edit below this line
+SOURCES = $(shell find $(SRCDIR) -type f -name *.c)
+OBJECTS = $(patsubst $(SRCDIR)/%,$(OBJDIR)/%,$(SOURCES:.c=.o))
+	#Flags, Libraries
+	CFLAGS      := -I. -c `pkg-config --cflags gtk4`
+	LIB         := -lgmp  `pkg-config --libs gtk4`
 
-all : main.o String.o Stack.o
-	$(CC) bin/main.o bin/String.o bin/Stack.o ${OPTION} -o main
+all: $(TARGET)
 
-main.o: src/main.c src/String.h
-	$(CC) -I. -c src/main.c -o bin/main.o
+$(TARGET): $(OBJECTS)
+	$(CC) -o $@ $^ $(LIB)
 
-String.o: src/String.c src/String.h
-	$(CC) -I. -c src/String.c -o bin/String.o
+$(OBJDIR)/%.o : $(SRCDIR)/%.c | $(OBJDIR)
+	$(CC) -o $@ -c $(CFLAGS) $<
 
-Stack.o : src/Stack.c src/Stack.h
-	$(CC) -I. -c src/Stack.c -o bin/Stack.o
+$(OBJDIR) :
+	mkdir -p $@
+
+.PHONY : all
+
+run: all
+	./main
+
+r: all
+	./main
 
 clean:
-	rm  bin/*
+	rm bin/*
 	rm main

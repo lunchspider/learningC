@@ -23,6 +23,7 @@ string string_init_char(char *, size_t);
 
 void string_append(string *, string *);
 
+
 void free_string(string *);
 
 void free_all_strings();
